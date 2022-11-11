@@ -1,11 +1,14 @@
 package com.example.coursework.view.trip
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -15,10 +18,13 @@ import com.example.coursework.model.TripModel
 import com.example.coursework.model.TripViewModel
 import kotlinx.android.synthetic.main.trip_update_fragment.*
 import kotlinx.android.synthetic.main.trip_update_fragment.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TripUpdate : Fragment() {
     private val args by navArgs<TripUpdateArgs>()
-
+    private lateinit var tvDate: TextView
+    private lateinit var btnDate : Button
     lateinit var mTripViewModel: TripViewModel
 
     override fun onCreateView(
@@ -36,6 +42,24 @@ class TripUpdate : Fragment() {
         view.upd_desc.setText(args.currentTrip.description)
 
         mTripViewModel = ViewModelProvider(this)[TripViewModel::class.java]
+
+        tvDate = view.upd_tdate
+        btnDate = view.btn_updDate
+
+        val myCalendar = Calendar.getInstance()
+
+        val datePicked = DatePickerDialog.OnDateSetListener{ view, year, month, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR, year)
+            myCalendar.set(Calendar.MONTH, month)
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateLable(myCalendar)
+        }
+        btnDate.setOnClickListener{
+            DatePickerDialog(requireContext(), datePicked,
+                myCalendar.get(Calendar.YEAR),
+                myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
 
         view.btnUpdateTrip.setOnClickListener{
             val vehicle = upd_vehicle.text.toString()
@@ -96,5 +120,11 @@ class TripUpdate : Fragment() {
         builder.setTitle("Delete ${args.currentTrip.name}?")
         builder.setMessage("Are you sure to delete ${args.currentTrip.name}?")
         builder.create().show()
+    }
+
+    private fun updateLable(myCalendar: Calendar) {
+        val format = "dd-MM-YYYY"
+        val dateFormat = SimpleDateFormat(format, Locale.UK)
+        tvDate.text = dateFormat.format(myCalendar.time)
     }
 }

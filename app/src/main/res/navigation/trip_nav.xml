@@ -47,8 +47,8 @@
     <fragment
         android:id="@+id/costAdd2"
         android:name="com.example.coursework.view.cost.CostAdd"
-        android:label="cost_add_fragment"
-        tools:layout="@layout/cost_add_fragment" >
+        android:label="Add Expense"
+        tools:layout="@layout/cost_add_fragment">
         <action
             android:id="@+id/action_costAdd2_to_tripHome"
             app:destination="@id/tripHome" />
@@ -59,8 +59,8 @@
     <fragment
         android:id="@+id/costHome2"
         android:name="com.example.coursework.view.cost.CostShow"
-        android:label="cost_home_fragment"
-        tools:layout="@layout/cost_show_fragment" >
+        android:label="Expenses List"
+        tools:layout="@layout/cost_show_fragment">
         <action
             android:id="@+id/action_costHome2_to_tripHome"
             app:destination="@id/tripHome" />

@@ -7,5 +7,5 @@
     <fragment
         android:id="@+id/costHome"
         android:name="com.example.coursework.view.cost.CostHome"
-        android:label="CostHome" />
+        android:label="Expense List" />
 </navigation>

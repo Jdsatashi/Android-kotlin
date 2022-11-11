@@ -56,8 +56,9 @@ class CostShow : Fragment() {
                 menuInflater.inflate(R.menu.searchtrip, menu)
 
                 val search = menu.findItem(R.id.searchItems)
+                search.isVisible = false
                 val searchView = search.actionView as SearchView
-                searchView.isSubmitButtonEnabled = true
+                searchView.isSubmitButtonEnabled = false
                 searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
                     override fun onQueryTextSubmit(query: String?): Boolean {
                         if (query != null) {

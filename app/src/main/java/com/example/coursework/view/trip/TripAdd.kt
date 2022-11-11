@@ -118,7 +118,7 @@ class TripAdd : Fragment() {
     }
 
     private fun updateLable(myCalendar: Calendar) {
-        val format = "dd-mm-yyyy"
+        val format = "dd-MM-YYYY"
         val dateFormat = SimpleDateFormat(format, Locale.UK)
         tvDate.setText(dateFormat.format(myCalendar.time))
     }
