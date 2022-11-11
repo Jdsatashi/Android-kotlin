@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trip_nav"
+    app:startDestination="@id/tripHome">
+
+    <fragment
+        android:id="@+id/tripHome"
+        android:name="com.example.coursework.view.trip.TripHome"
+        android:label="Trip management"
+        tools:layout="@layout/trip_home_fragment" >
+        <action
+            android:id="@+id/action_tripHome_to_tripAdd"
+            app:destination="@id/tripAdd" />
+        <action
+            android:id="@+id/action_tripHome_to_tripUpdate"
+            app:destination="@id/tripUpdate" />
+        <action
+            android:id="@+id/action_tripHome_to_costAdd2"
+            app:destination="@id/costAdd2" />
+        <action
+            android:id="@+id/action_tripHome_to_costHome2"
+            app:destination="@id/costHome2" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripAdd"
+        android:name="com.example.coursework.view.trip.TripAdd"
+        android:label="Adding trip"
+        tools:layout="@layout/trip_add_fragment" >
+        <action
+            android:id="@+id/action_tripAdd_to_tripHome"
+            app:destination="@id/tripHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/tripUpdate"
+        android:name="com.example.coursework.view.trip.TripUpdate"
+        android:label="Trip Update"
+        tools:layout="@layout/trip_update_fragment">
+        <action
+            android:id="@+id/action_tripUpdate_to_tripHome"
+            app:destination="@id/tripHome" />
+        <argument
+            android:name="currentTrip"
+            app:argType="com.example.coursework.model.TripModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/costAdd2"
+        android:name="com.example.coursework.view.cost.CostAdd"
+        android:label="cost_add_fragment"
+        tools:layout="@layout/cost_add_fragment" >
+        <action
+            android:id="@+id/action_costAdd2_to_tripHome"
+            app:destination="@id/tripHome" />
+        <argument
+            android:name="currentTrip"
+            app:argType="com.example.coursework.model.TripModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/costHome2"
+        android:name="com.example.coursework.view.cost.CostShow"
+        android:label="cost_home_fragment"
+        tools:layout="@layout/cost_show_fragment" >
+        <action
+            android:id="@+id/action_costHome2_to_tripHome"
+            app:destination="@id/tripHome" />
+        <argument
+            android:name="currentTrip"
+            app:argType="com.example.coursework.model.TripModel" />
+    </fragment>
+</navigation>
